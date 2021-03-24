@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Joke {
+public class Joke implements Comparable<Joke> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -18,6 +18,7 @@ public class Joke {
 	private int rating;
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	private String author;
 	
 	public long getId() {
 		return id;
@@ -42,6 +43,15 @@ public class Joke {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getAuthor() { return author;}
+	public void setAuthor(String author) { this.author = author; };
+
+	@Override
+	public int compareTo(Joke o) {
+		if(this.rating < o.getRating()) return -1;
+		if(this.rating > o.getRating()) return 1;
+		return 0;
 	}
 
 }

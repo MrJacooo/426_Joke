@@ -1,6 +1,7 @@
 package ch.bbw.jokebook.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -32,6 +33,7 @@ public class DatabaseService {
 
 		// Lösung II: mit Stream-Utitilies
 		return StreamSupport.stream(jokeRepository.findAll().spliterator(), false)
+							.sorted(Comparator.reverseOrder())
 							.collect(Collectors.toList());
 	}
 
